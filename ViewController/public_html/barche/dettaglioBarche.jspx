@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="dettaglioBarche.jspx" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/sicsicTemplateTree.jspx" id="pt1">
+                    <f:facet name="mainContent">
+                        <af:panelStretchLayout id="psl3" bottomHeight="50">
+                            <f:facet name="center">
+                                <af:panelBox id="pb1" text="Inserimento Barche" showDisclosure="false">
+                                    <af:panelFormLayout id="pf1" maxColumns="3" rows="9">
+                                        <af:inputText id="insNomeBarca" label="Nome Barca"
+                                                      binding="#{backing_dettaglioBarche.itNomeBarca}"/>
+                                        <af:inputText id="insSiglaIsrcizione" label="Sigla iscrizione"
+                                                      binding="#{backing_dettaglioBarche.itSiglaIsrcizione}"/>
+                                        <af:inputText id="insCostruitaDa" label="Costruita da"
+                                                      binding="#{backing_dettaglioBarche.itCostruitaDa}"/>
+                                        <af:inputText id="insSerialeScafo" label="Seriale scafo"
+                                                      binding="#{backing_dettaglioBarche.itSerialeScafo}"/>
+                                        <af:inputText id="insMotorizzazione" label="Motorizzazione"
+                                                      binding="#{backing_dettaglioBarche.itMotorizzazione}"/>                 
+                                         <af:inputText id="insBandiera" label="Bandiera"
+                                                      binding="#{backing_dettaglioBarche.itBandiera}"/>
+                                        <af:inputText id="insTipoModello" label="Tipo e Modello"
+                                                      binding="#{backing_dettaglioBarche.itTipoModello}"/>
+                                        <af:inputText id="insMatricoleMotori" label="Matric. Motor."
+                                                      binding="#{backing_dettaglioBarche.itMatricoleMotori}"/>
+                                        <af:inputText id="insLimitiNavigazione" label="Limiti di navig."
+                                                      binding="#{backing_dettaglioBarche.itLimitiNavigazione}"/>
+                                        <af:inputText id="insLunghezza" label="Lunghezza mt"
+                                                      binding="#{backing_dettaglioBarche.itLunghezza}" columns="4">
+                                                      <af:convertNumber hintPattern="999,99" pattern="#.00" minIntegerDigits="1" />
+                                                      </af:inputText>
+                                        <af:inputText id="insPescaggio" label="Pescaggio mt"
+                                                      binding="#{backing_dettaglioBarche.itPescaggio}" columns="4">
+                                        <af:convertNumber hintPattern="999,99" pattern="#.00" minIntegerDigits="1"/>
+                                        </af:inputText>
+
+                                        <af:inputText id="insCapacitaGasolio" label="Capacità gasolio lt"
+                                                      binding="#{backing_dettaglioBarche.itCapacitaGasolio}" columns="4">
+                                                    <af:convertNumber hintPattern="999,99" pattern="#.00" minIntegerDigits="1"/>
+                                                    </af:inputText>
+                                        <af:inputText id="insNumMinEquipaggio" label="N. minimo equipaggio" 
+                                                      binding="#{backing_dettaglioBarche.itNumMinEquipaggio}" columns="4">
+                                                      <af:convertNumber hintPattern="999" />
+                                                      </af:inputText>
+                                        <af:inputText id="insNumMaxPersone" label="N. massimo persone"
+                                                      binding="#{backing_dettaglioBarche.itNumMaxPersone}" columns="4">
+                                                      <af:convertNumber hintPattern="999"/>
+                                                      </af:inputText>
+
+                                        <af:inputText id="insAnnoCostruzione" label="Anno di Costruzione"
+                                                      binding="#{backing_dettaglioBarche.itAnnoCostruzione}" columns="4">
+                                                      <af:convertNumber hintPattern="1979" pattern="#"/>
+                                                      </af:inputText>
+
+                                        <af:inputText id="insLarghezza" label="Larghezza mt"
+                                                      binding="#{backing_dettaglioBarche.itLarghezza}" columns="4">
+                                                      <af:convertNumber hintPattern="999,99" pattern="#.00" minIntegerDigits="1"/>
+                                                      </af:inputText>
+                                        <af:inputText id="insDislocamento" label="Dislocamento tons"
+                                                      binding="#{backing_dettaglioBarche.itDislocamento}" columns="4">
+                                                      <af:convertNumber hintPattern="999,99" pattern="#.00" minIntegerDigits="1"/>
+                                                      </af:inputText>
+
+                                        <af:inputText id="insCapacitaAcqua" label="Capacita acqua"
+                                                      binding="#{backing_dettaglioBarche.itCapacitaAcqua}" columns="4">
+                                                      <af:convertNumber hintPattern="999,99" pattern="#.00" minIntegerDigits="1"/>
+                                                      </af:inputText>
+
+                                        <af:inputText id="insAssPolizzaCorpi" label="Ass. polizza corpi"
+                                                      binding="#{backing_dettaglioBarche.itAssPolizzaCorpi}"/>
+
+                                        <af:inputText id="insCertificazioneCE" label="Certificazione UE"
+                                                      binding="#{backing_dettaglioBarche.itCertificazioneCE}"/>                                                      
+
+                                        <af:inputText id="insNumeroRegistro" label="Numero Registro"
+                                                      binding="#{backing_dettaglioBarche.itNumeroRegistro}"/>
+                                        <af:inputText id="insAssPolizzaRC" label="Ass polizza RC"
+                                                      binding="#{backing_dettaglioBarche.itAssPolizzaRC}" rows="3"/>
+                                        <af:inputText label="itId" id="itId" visible="false"
+                                                      binding="#{backing_dettaglioBarche.itId}"/>                                                      
+                                    </af:panelFormLayout>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="bottom">
+                                <af:panelGroupLayout id="pglBottom" halign="end" layout="horizontal">
+                                    <af:commandButton text="Salva" id="salva" icon="/img/save16x16.png" partialSubmit="true"
+                                                      actionListener="#{backing_dettaglioBarche.openPopup}"/>
+                 <af:commandButton text="Indietro" id="cbBack" icon="/img/back16x16.png"
+                                                      action="#{backing_dettaglioBarche.actionBack}"/>
+                                                   </af:panelGroupLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                </af:pageTemplate>
+                   <af:popup id="confirm" binding="#{backing_dettaglioBarche.popupConfirm}">
+                    <af:dialog  id="dConf" closeIconVisible="false" type="yesNo" title="Attention"
+                               dialogListener="#{backing_dettaglioBarche.dialogListener}"
+                               binding="#{backing_dettaglioBarche.dialogConfirm}">
+                        <af:spacer width="10" height="10" id="s7"/>
+                        <af:outputText value="#{backing_dettaglioBarche.nomeBarcaPopup}" id="otConf" />
+                        <af:spacer width="10" height="10" id="s8"/>
+                    </af:dialog>
+                </af:popup>
+              <af:popup id="noteWindow" binding="#{backing_dettaglioBarche.noteWindow}">
+                    <af:noteWindow id="nw" autoDismissalTimeout="15">
+                        <af:outputText id="otNW" value="#{backing_dettaglioBarche.msg}"/>
+                    </af:noteWindow>
+                </af:popup>
+  
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

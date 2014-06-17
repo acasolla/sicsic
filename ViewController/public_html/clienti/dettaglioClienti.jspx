@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="dettaglioClienti.jspx" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/sicsicTemplateTree.jspx" id="pt1">
+                    <f:facet name="mainContent">
+                        <af:panelStretchLayout id="psl3" bottomHeight="50">
+                            <f:facet name="center">
+                                <af:panelBox id="pb1" text="Inserimento Clienti" showDisclosure="false">
+                                    <af:spacer width="10" height="20" id="s4"/>
+                                    <af:showDetailHeader text="Privato" id="sdh1" partialTriggers="sdh2"
+                                                         disclosureListener="#{backing_dettaglioClienti.showDetailPrivatoAction}"
+                                                         binding="#{backing_dettaglioClienti.showDetailPrivato}">
+                                        <af:panelFormLayout id="pf1" maxColumns="3" rows="1">
+                                            <af:inputText id="insNome" label="Nome"
+                                                          binding="#{backing_dettaglioClienti.itNome}"/>
+                                            <af:inputText id="insCognome" label="Cognome"
+                                                          binding="#{backing_dettaglioClienti.itCognome}"/>
+                                            <af:inputDate label="Nato il" id="dataNatoIl"
+                                                          binding="#{backing_dettaglioClienti.idaNatoIl}"/>
+                                            <af:inputText id="insNatoA" label="Nato a"
+                                                          binding="#{backing_dettaglioClienti.itNatoA}"/>
+                                            <af:selectOneChoice id="smc2" label="Nazionalità"
+                                                                binding="#{backing_dettaglioClienti.socNazione}">
+                                            <f:selectItem id="si12" value="#{backing_dettaglioClienti.nazioneSel}"/>
+                                            <f:selectItems id="siis" value="#{backing_dettaglioClienti.valuesNazione}"/>
+                                            </af:selectOneChoice>
+                                            <af:selectOneChoice id="smc1" label="Tipo di doc." required="false"
+                                                                binding="#{backing_dettaglioClienti.tipoDocumento}">
+                                                <f:selectItem id="si11"
+                                                              value="#{backing_dettaglioClienti.tipoDocumentoSel}"/>
+                                                <f:selectItems id="si1"
+                                                               value="#{backing_dettaglioClienti.valuesTipoDocumento}"/>
+                                            </af:selectOneChoice>
+                                            <af:inputText id="insDocumento" label="Num. doc."
+                                                          binding="#{backing_dettaglioClienti.itDocumento}"/>
+                                            <af:inputText label="itIdNazione" id="itIdNazione" visible="false"
+                                                      binding="#{backing_dettaglioClienti.itIdNazione}"/> 
+                                            <af:inputText label="itIdTipoDocumento" id="itIdTipoDocumento" visible="false"
+                                                      binding="#{backing_dettaglioClienti.itIdTipoDocumento}"/>
+                                        </af:panelFormLayout>
+                                    </af:showDetailHeader>
+                                    <af:spacer width="10" height="20" id="s1"/>
+                                    <af:showDetailHeader text="Azienda" id="sdh2"
+                                                         binding="#{backing_dettaglioClienti.showDetailAzienda}"
+                                                         disclosureListener="#{backing_dettaglioClienti.showDetailAziendaAction}">
+                                        <af:panelFormLayout id="pf2" maxColumns="3" rows="1">
+                                            <af:inputText id="insRagSoc1ialeA" label="Rag.Sociale"
+                                                          binding="#{backing_dettaglioClienti.itRagSociale}"/>
+                                            <af:inputText id="insSedeLegaleA" label="CF/P.IVA" rows="1"
+                                                          binding="#{backing_dettaglioClienti.itCfPiva}"/>
+                                        </af:panelFormLayout>
+                                    </af:showDetailHeader>
+                                    <af:spacer width="10" height="40" id="s2"/>
+                                    <af:panelFormLayout id="pf3" maxColumns="4" rows="2">
+                                        <af:inputText id="insIndirizzo" label="Indirizzo"
+                                                      binding="#{backing_dettaglioClienti.itIndirizzo}"/>
+                                        <af:inputText id="insCitta" label="Citta"
+                                                      binding="#{backing_dettaglioClienti.itCitta}"/>
+                                        <af:inputText id="insProvincia" label="Provincia"
+                                                      binding="#{backing_dettaglioClienti.itProvincia}"/>
+                                        <af:inputText id="insTelefono" label="Telefono"
+                                                      binding="#{backing_dettaglioClienti.itTelefono}"/>
+                                        <af:inputText id="insFax" label="Fax"
+                                                      binding="#{backing_dettaglioClienti.itFax}"/>
+                                        <af:inputText id="insEmail" label="Email"
+                                                      binding="#{backing_dettaglioClienti.itEmail}"/>
+                                        <af:inputText label="itId" id="itId" visible="false"
+                                                      binding="#{backing_dettaglioClienti.itId}"/>
+                                    </af:panelFormLayout>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="bottom">
+                                <af:panelGroupLayout id="pglBottom" halign="end" layout="horizontal">
+                                    <af:commandButton text="Salva" id="salva" icon="/img/save16x16.png"
+                                                      partialSubmit="true"
+                                                      actionListener="#{backing_dettaglioClienti.openPopup}"/>
+                                    <af:commandButton partialSubmit="true" text="Indietro" id="cbBack"
+                                                      icon="/img/back16x16.png"
+                                                      action="#{backing_dettaglioClienti.actionBack}"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                </af:pageTemplate>
+                <af:popup id="pConfirm" binding="#{backing_dettaglioClienti.popupConfirm}">
+                    <af:dialog id="dConf" closeIconVisible="false" type="yesNo" title="Attention"
+                               dialogListener="#{backing_dettaglioClienti.dialogConfirmListener}"
+                               binding="#{backing_dettaglioClienti.dialogConfirm}">
+                        <af:spacer width="10" height="10" id="s7"/>
+                        <af:outputText value="#{backing_dettaglioClienti.msgPopup}" id="otConf"/>
+                        <af:spacer width="10" height="10" id="s8"/>
+                    </af:dialog>
+                </af:popup>
+                <af:popup id="noteWindow" binding="#{backing_dettaglioClienti.noteWindow}">
+                    <af:noteWindow id="nw" autoDismissalTimeout="15">
+                        <af:outputText id="otNW" value="#{backing_dettaglioClienti.msg}"/>
+                    </af:noteWindow>
+                </af:popup>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="dettaglioSkipper.jspx" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/sicsicTemplateTree.jspx" id="pt1">
+                    <f:facet name="mainContent">
+                        <af:panelStretchLayout id="psl3" bottomHeight="50">
+                            <f:facet name="center">
+                                <af:panelBox id="pb1" text="Inserimento Skipper" showDisclosure="false">
+                                    <af:panelFormLayout id="pf1" maxColumns="3" rows="1">
+                                        <af:inputText id="itCognome" label="Nome skipper"
+                                                      binding="#{backing_dettaglioSkipper.itNome}"/> 
+                                         <af:inputText id="itNome" label="Cognome"
+                                                      binding="#{backing_dettaglioSkipper.itCognome}"/>
+                                        <af:inputDate label="Nato il" id="dataNatoIl"
+                                                      binding="#{backing_dettaglioSkipper.idaNatoIl}"/>
+                                        <af:inputText id="itNatoA" label="Nato a"
+                                                      binding="#{backing_dettaglioSkipper.itNatoA}"/>
+                                        <af:inputText id="itResidenza" label="Residente a"
+                                                      binding="#{backing_dettaglioSkipper.itResidenza}"/>
+                                        <af:inputText id="itIndirizzo" label="Indirizzo"
+                                                      binding="#{backing_dettaglioSkipper.itIndirizzo}"/>                                                      
+                                        <af:inputText id="itPatenteNautica" label="Patente nautica"
+                                                      binding="#{backing_dettaglioSkipper.itPatenteNautica}"/>
+                                        <af:inputText id="itRilasciataDa" label="Rilasciata Da"
+                                                      binding="#{backing_dettaglioSkipper.itRilasciataDa}"/>
+                                       <af:inputDate id="itRilasciataIl" label="Rilasciata Il"
+                                                     binding="#{backing_dettaglioSkipper.itRilasciataIl}"/>
+                                         <af:inputText label="itId" id="itId" visible="false"
+                                                       binding="#{backing_dettaglioSkipper.itId}"/>
+                                    </af:panelFormLayout>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="bottom">
+                                <af:panelGroupLayout id="pglBottom" halign="end" layout="horizontal">
+                                    <af:commandButton text="Salva" id="salva" icon="/img/save16x16.png" partialSubmit="true"
+                                                      actionListener="#{backing_dettaglioSkipper.openPopup}"/>
+                                    <af:commandButton text="Indietro" id="cbBack" icon="/img/back16x16.png"
+                                                      action="#{backing_dettaglioSkipper.actionBack}"/>                                
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                </af:pageTemplate>
+                 <af:popup id="pConfirm" binding="#{backing_dettaglioSkipper.popupConfirm}">
+                    <af:dialog id="dConf" closeIconVisible="false" type="yesNo" title="Attention"
+                               dialogListener="#{backing_dettaglioSkipper.dialogConfirmListener}"
+                               binding="#{backing_dettaglioSkipper.dialogConfirm}">
+                        <af:spacer width="10" height="10" id="s7"/>
+                        <af:outputText value="#{backing_dettaglioSkipper.msgPopup}" id="otConf"/>
+                        <af:spacer width="10" height="10" id="s8"/>
+                    </af:dialog>
+                    
+                </af:popup>
+                <af:popup id="noteWindow" binding="#{backing_dettaglioSkipper.noteWindow}">
+                    <af:noteWindow id="nw" autoDismissalTimeout="15">
+                        <af:outputText id="otNW" value="#{backing_dettaglioSkipper.msg}"/>
+                    </af:noteWindow>
+                </af:popup>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

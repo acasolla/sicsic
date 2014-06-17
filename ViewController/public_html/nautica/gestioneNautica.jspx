@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view beforePhase="#{backing_gestioneNautica.beforePhase}">
+        <af:document title="gestioneNautica.jspx" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/sicsicTemplateTree.jspx" id="pt1">
+                    <f:facet name="mainContent">
+                        <af:panelSplitter orientation="vertical" splitterPosition="240" id="ps1">
+                            <f:facet name="first">
+                                <af:panelBox text="Ricerca Nautica" id="pb1" showDisclosure="false"
+                                             contentStyle="height:180px;">
+                                    <af:panelStretchLayout id="psl1">
+                                        <f:facet name="center">
+                                            <af:panelFormLayout id="pfl1" maxColumns="2" rows="6">
+                                                <af:inputDate label="Da" id="id1"
+                                                              binding="#{backing_gestioneNautica.idaDataDA}"/>
+                                                <af:inputDate label="A" id="id2"
+                                                              binding="#{backing_gestioneNautica.idaDataA}"/>
+                                                <af:selectOneChoice id="scliente" label="Cliente"
+                                                                    binding="#{backing_gestioneNautica.scliente}">
+                                                    <f:selectItem id="si3" itemLabel="Seleziona Cliente" itemValue=""/>
+                                                    <f:selectItems id="sii3"
+                                                                   value="#{backing_dettaglioNoleggio.displayValuesCliente}"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice id="smc2" label="Barca"
+                                                                    binding="#{backing_gestioneNautica.sbarca}">
+                                                    <f:selectItem id="si2" itemLabel="Seleziona Barca" itemValue=""/>
+                                                    <f:selectItems id="sii2"
+                                                                   value="#{backing_dettaglioNoleggio.displayValuesBarca}"/>
+                                                </af:selectOneChoice>
+                                                <af:inputText columns="20" id="itCognome" label="Importo nolo"
+                                                              binding="#{backing_gestioneNautica.itImportoNolo}">
+                                                    <af:convertNumber hintPattern="999,99" pattern="#.00"
+                                                                      minIntegerDigits="1"/>
+                                                </af:inputText>
+
+                                           <af:selectOneChoice id="smc3" label="Pagamento"
+                                                                    binding="#{backing_gestioneNautica.spagamento}">
+                                                    <f:selectItem id="si34" itemLabel="Seleziona Pagamento" itemValue=""/>
+                                                    <f:selectItems id="sii24"
+                                                                   value="#{backing_dettaglioSpese.valuesPagamento}"/>
+                                                </af:selectOneChoice>
+          
+
+
+                                                 <af:panelGroupLayout layout="horizontal" id="pgl3">
+                                                    <af:spacer width="20px" id="iiio"/>
+                                                    <af:outputText value="TOT NOLO: "
+                                                                   inlineStyle="font-size:large; font-weight:bold;"/>
+                                                    <af:outputText 
+                                                                   inlineStyle="font-size:14px;font-weight:bold;background:#b1d2e5;padding:5px;border-radius:5px;margin-left:10px;"
+                                                                   id="ot2" partialTriggers="cerca pc1:cbDelete"
+                                                                   binding="#{backing_gestioneNautica.totaleNolo}"/>
+                                                    
+                                                </af:panelGroupLayout>
+                                                <af:spacer height="8px"/>
+                                                <af:panelGroupLayout layout="horizontal" id="pgl44">
+                                                     <af:spacer width="22px" />
+                                                    <af:outputText value="TOT CARB: "
+                                                                   inlineStyle="font-size:large; font-weight:bold;"/>
+                                                    <af:outputText 
+                                                                   inlineStyle="font-size:14px;font-weight:bold;background:#b1d2e5;padding:5px;border-radius:5px;margin-left:10px;"
+                                                                   id="ot3" partialTriggers="cerca pc1:cbDelete"
+                                                                   binding="#{backing_gestioneNautica.totaleCarburante}"/>
+                                                </af:panelGroupLayout>
+                                                <af:spacer height="8px"/>
+                                                <af:panelGroupLayout layout="horizontal" id="pgl45">   
+                                                <af:spacer width="42px" />
+                                                    <af:outputText value="TOTALE: "
+                                                                   inlineStyle="font-size:large; font-weight:bold;color:red;"/>
+                                                    <af:outputText 
+                                                                   inlineStyle="font-size:14px;font-weight:bold;background:#b1d2e5;padding:5px;border-radius:5px;margin-left:10px;"
+                                                                   id="ot5" partialTriggers="cerca pc1:cbDelete"
+                                                                   binding="#{backing_gestioneNautica.importoTotale}"/>
+                                                </af:panelGroupLayout>
+                                            </af:panelFormLayout>
+                                        </f:facet>
+                                        <f:facet name="bottom">
+                                            <af:panelFormLayout id="pfl2" rows="1">
+                                                <af:commandButton icon="/img/serach24x24.png"
+                                                                  inlineStyle="width:100px; font-size:14px; height:30px; margin:18px 5px 0px 0px; font-weight:bold;"
+                                                                  text="  Cerca" id="cerca" partialSubmit="true"
+                                                                  actionListener="#{backing_gestioneNautica.cerca}"/>
+                                            </af:panelFormLayout>
+                                        </f:facet>
+                                    </af:panelStretchLayout>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="second">
+                                <af:panelBox text="Lista Nautica" id="pb2" showDisclosure="false">
+                                    <af:panelStretchLayout id="psl3" bottomHeight="50">
+                                        <f:facet name="center">
+                                            <af:panelCollection id="pc1">
+                                                <f:facet name="statusbar">
+                                                    <af:toolbar id="t2">
+                                                        <af:commandButton text="Cancella" icon="/img/x16x16.png"
+                                                                          id="cbDelete" partialSubmit="true" immediate="true"
+                                                                          actionListener="#{backing_gestioneNautica.openPopup}"/>
+                                                        <af:commandButton text="Dettaglio" icon="/img/detail16x16.png"
+                                                                          id="cbDetail" immediate="true"
+                                                                          action="#{backing_gestioneNautica.actionDetail}"/>
+                                                        <af:commandButton text="Export" id="cbExport">
+                                                            <af:exportCollectionActionListener exportedId="tNautic"
+                                                                                               type="excelHTML"
+                                                                                               filename="Noleggi.xls"
+                                                                                               title="Noleggi"/>
+                                                        </af:commandButton>
+                                          
+                                                    </af:toolbar>
+                                                </f:facet>
+                                                <af:table summary="noleggiotable" var="row" rowBandingInterval="0"
+                                                          id="tNautic" rowSelection="single" fetchSize="200"
+                                                          value="#{backing_gestioneNautica.noleggioTable}"
+                                                          binding="#{backing_gestioneNautica.TNautic}">
+                                                    <af:column sortable="false" headerText="Data noleggio" id="c1c">
+                                                        <af:outputText value="#{row.formattedDate}" id="dataNoleggio"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Barca" id="c3c">
+                                                        <af:outputText value="#{row.nomeBarca}" id="nomeBarca"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Cliente" id="c4c">  
+                                                        <af:outputText value="#{row.nomeCliente}" id="nomeCliente"/>
+                                                        <af:outputText value="#{row.cognomeCliente}"
+                                                                       id="cognomeCliente"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Azienda" id="c44c">
+                                                        <af:outputText value="#{row.ragioneSociale}" id="nomeAzienda"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Skipper" id="c5c">
+                                                        <af:outputText value="#{row.nomeSkipper}" id="nomeSkipper"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Importo nolo" id="c2c">
+                                                        <af:outputText value="#{row.formattedValueEuroNolo}"
+                                                                       id="importoNolo"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="TOTALE nolo" id="c2ec">
+                                                        <af:outputText value="#{row.formattedValueEuroNoloTotale}"
+                                                                       id="importoNoloTot"/>
+                                                    </af:column>
+                                                    <af:column rowHeader="unstyled" headerText="Importo carburante"
+                                                               id="c1c2">
+                                                        <af:outputText value="#{row.formattedValueEuroCarburante}"
+                                                                       id="importoCarburante"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="TOTALE carburante"
+                                                               id="c2ec1">
+                                                        <af:outputText value="#{row.formattedValueEuroCarburanteTotale}"
+                                                                       id="importoCarburanteTot"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Pagamento" id="c6c">
+                                                        <af:outputText value="#{row.pagatoNonPagato}" id="pagamento"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Note" id="c7c">
+                                                        <af:outputText value="#{row.note}" id="note"/>
+                                                    </af:column>
+                                                </af:table>
+                                            </af:panelCollection>
+                                        </f:facet>
+                                    </af:panelStretchLayout>
+                                </af:panelBox>
+                            </f:facet>
+                        </af:panelSplitter>
+                    </f:facet>
+                </af:pageTemplate>
+                <af:popup id="pRemove" binding="#{backing_gestioneNautica.popupRemove}">
+                    <af:dialog id="dRemove" closeIconVisible="false" type="yesNo" title="Attention"
+                               dialogListener="#{backing_gestioneNautica.dialogRemoveListener}"
+                               binding="#{backing_gestioneNautica.dialogRemove}">
+                        <af:spacer width="10" height="10" id="s9"/>
+                        <af:outputText value="#{backing_gestioneNautica.msgPopup}" id="otRemove"/>
+                        <af:spacer width="10" height="10" id="s10"/>
+                    </af:dialog>
+                </af:popup>
+                <af:popup id="noteWindow" binding="#{backing_gestioneNautica.noteWindow}">
+                    <af:noteWindow id="nw" autoDismissalTimeout="15">
+                        <af:outputText id="otNW" value="#{backing_gestioneNautica.msg}"
+                                       binding="#{backing_gestioneNautica.otMsg}"/>
+                    </af:noteWindow>
+                </af:popup>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

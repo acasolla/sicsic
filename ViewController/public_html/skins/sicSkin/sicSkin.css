@@ -1,0 +1,46 @@
+/**ADFFaces_Skin_File / DO NOT REMOVE**/
+@namespace af "http://xmlns.oracle.com/adf/faces/rich";
+@namespace dvt "http://xmlns.oracle.com/dss/adf/faces";
+
+af|inputText
+{
+  font-size: large; 
+}
+af|inputText::label
+{
+  font-size: 13px; 
+  font-weight: bold; 
+  color: #336699; 
+  text-align: left;
+  width: 100px;
+}
+af|inputText:required::label
+{
+  width: auto; 
+  height: auto; 
+}
+
+af|inputDate::label
+{
+  color: #336699; 
+  font-size: 13px; 
+  font-weight: bold; 
+}
+af|selectOneChoice::label
+{
+  color: #336699; 
+  font-size: 13px; 
+  font-weight: bold; 
+}
+af|selectOneRadio::label
+{
+  color: #336699; 
+  font-size: 13px; 
+  font-weight: bold; 
+}
+af|selectBooleanRadio::label
+{
+  color: #336699; 
+  font-size: 13px; 
+  font-weight: bold; 
+}

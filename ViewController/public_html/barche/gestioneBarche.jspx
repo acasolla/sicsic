@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="gestioneBarche.jspx" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/sicsicTemplateTree.jspx" id="pt1">
+                    <f:facet name="mainContent">
+                        <af:panelSplitter orientation="vertical" splitterPosition="160" id="ps1">
+                            <f:facet name="first">
+                                <af:panelBox text="Ricerca Barche" id="pb1" showDisclosure="false" contentStyle="height:100px;">
+                                    <af:panelStretchLayout id="psl1">
+                                        <f:facet name="center">
+                                            <af:panelFormLayout id="pfl1" maxColumns="2" rows="1">
+                                                <af:inputText id="itNomeBarca" label="Nome barca" binding="#{backing_gestioneBarche.itNomeBarca}"/>
+                                                <af:inputText id="itModello" label="Modello e tipo" binding="#{backing_gestioneBarche.itModello}"/>
+                                            </af:panelFormLayout>
+                                        </f:facet>
+                                        <f:facet name="bottom">
+                                            <af:panelFormLayout id="pfl2">
+                                                <af:commandButton icon="/img/serach24x24.png"
+                                                      inlineStyle="width:100px; font-size:14px; height:30px; margin:18px 5px 0px 0px; font-weight:bold;" text="  Cerca" id="cerca"
+                                                                  actionListener="#{backing_gestioneBarche.cerca}"/>
+                                            </af:panelFormLayout>
+                                        </f:facet>
+                                    </af:panelStretchLayout>
+                                </af:panelBox>
+                            </f:facet>                            
+                            <f:facet name="second">
+                                        <af:panelBox text="Lista Barche" id="pb2" showDisclosure="false">
+                                            <af:panelStretchLayout id="psl3" bottomHeight="50">
+                                            <f:facet name="center" >
+                                                <af:panelCollection id="pc1">
+                                                  <f:facet name="statusbar">
+                                                 <af:toolbar id="t2">
+                                                        <af:commandButton text="Cancella" icon="/img/x16x16.png" id="cbDelete" partialSubmit="true"
+                                                                          actionListener="#{backing_gestioneBarche.openPopup}"/>
+                                                        <af:commandButton text="Dettaglio" icon="/img/detail16x16.png" id="cbDetail"
+                                                                          action="#{backing_gestioneBarche.actionDetail}"/>
+                                                    </af:toolbar>
+                                                </f:facet> 
+                                                    <af:table summary="tableBarche" value="#{backing_gestioneBarche.listTableBarche}" var="row" 
+                                                              rowBandingInterval="0" id="tBarche"
+                                                              rowSelection="single"
+                                                              partialTriggers="::cbDelete"
+                                                              binding="#{backing_gestioneBarche.TBarche}"
+                                                              selectionListener="#{backing_gestioneBarche.tableSelection}">
+                                                        <af:column sortable="false" headerText="Nome barca" id="c1">
+                                                            <af:outputText value="#{row.nomeBarca}" id="vai"/>
+                                                        </af:column>
+                                                        <af:column sortable="false" headerText="Tipo e modello" id="c2">
+                                                            <af:outputText value="#{row.tipoModello}" id="ot2"/>
+                                                        </af:column>
+                                                        <af:column sortable="false" headerText="Lunghezza" id="c3">
+                                                            <af:outputText value="#{row.lunghezza}" id="ot3"/>
+                                                        </af:column>
+                                                        <af:column sortable="false" headerText="Equipaggio Min" id="c4">
+                                                            <af:outputText value="#{row.numMinEquipaggio}" id="ot4"/>
+                                                        </af:column>
+                                                        <af:column rowHeader="unstyled" sortable="false" headerText="Equipaggio Max" id="c5">
+                                                            <af:outputText value="#{row.numMaxEquipaggio}" id="ot5"/>
+                                                        </af:column>
+                                                    </af:table>
+                                                    </af:panelCollection>
+                                                </f:facet>
+                                            </af:panelStretchLayout>
+                                        </af:panelBox>
+                                </f:facet>
+                        </af:panelSplitter>
+                    </f:facet>
+                </af:pageTemplate>
+                <af:popup id="pRemove" binding="#{backing_gestioneBarche.popupRemove}">
+                    <af:dialog id="dRemove" closeIconVisible="false" type="yesNo" title="Attention"
+                               dialogListener="#{backing_gestioneBarche.dialogRemoveListener}"
+                               binding="#{backing_gestioneBarche.dialogRemove}">
+                        <af:spacer width="10" height="10" id="s9"/>
+                        <af:outputText value="#{backing_gestioneBarche.msgPopup}" id="otRemove"/>
+                        <af:spacer width="10" height="10" id="s10"/>
+                    </af:dialog>
+                </af:popup>
+                <af:popup id="noteWindow" binding="#{backing_gestioneBarche.noteWindow}">
+                    <af:noteWindow id="nw" autoDismissalTimeout="15">
+                        <af:outputText id="otNW" value="#{backing_gestioneBarche.msg}"
+                                       binding="#{backing_gestioneBarche.otMsg}"/>
+                    </af:noteWindow>
+                </af:popup>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

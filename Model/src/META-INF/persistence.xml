@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+  <!--persistence-unit name="nauticasicsic" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>java:comp/env/jdbc/sicsic</jta-data-source>
+    <class>it.abc.sicsic.model.Barche</class>
+    <class>it.abc.sicsic.model.Spese</class>
+    <class>it.abc.sicsic.model.SpeseDTO</class>
+    <class>it.abc.sicsic.model.Clienti</class>
+    <class>it.abc.sicsic.model.Skipper</class>
+    <class>it.abc.sicsic.model.Noleggio</class>
+    <class>it.abc.sicsic.model.NoleggioDTO</class>
+     <properties>
+            <property name="javax.persistence.jtaDataSource" value="jdbc/sicsic"/>
+            
+        </properties>
+     </persistence-unit-->
+  <persistence-unit name="nauticasicsic" transaction-type="RESOURCE_LOCAL">
+        <!-- comment out to use the default provider  
+<provider>oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider</provider>
+-->
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>it.abc.sicsic.model.Barche</class>
+        <class>it.abc.sicsic.model.Spese</class>
+        <class>it.abc.sicsic.model.SpeseDTO</class>
+        <class>it.abc.sicsic.model.Clienti</class>
+        <class>it.abc.sicsic.model.Skipper</class>
+        <class>it.abc.sicsic.model.Noleggio</class>
+        <class>it.abc.sicsic.model.NoleggioDTO</class>
+        
+        <properties>
+        
+        <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/nauticasicsic" />
+        <property name="javax.persistence.jdbc.user" value="root" />
+        <property name="javax.persistence.jdbc.password" value="" />
+        <property name="eclipselink.ddl-generation" value="create-tables" />
+        <property name="eclipselink.ddl-generation.output-mode" value="database" />
+        
+        </properties>
+    </persistence-unit>
+</persistence>

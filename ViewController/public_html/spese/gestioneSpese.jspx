@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="gestioneSpese.jspx" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/sicsicTemplateTree.jspx" id="pt1">
+                    <f:facet name="mainContent">
+                        <af:panelSplitter orientation="vertical" splitterPosition="220" id="ps1">
+                            <f:facet name="first">
+                                <af:panelBox text="Ricerca Spese" id="pb1" showDisclosure="false"
+                                             contentStyle="height:160px;">
+                                    <af:panelStretchLayout id="psl1">
+                                        <f:facet name="center">
+                                            <af:panelFormLayout id="pfl1" maxColumns="2" rows="5">
+                                                <af:inputDate label="Da" id="id1"
+                                                              binding="#{backing_gestioneSpese.idaDataDA}"/>
+                                                <af:inputDate label="A" id="id2"
+                                                              binding="#{backing_gestioneSpese.idaDataA}"/>
+                                                <af:selectOneChoice id="smc12" label="Tipo di spesa" required="false"
+                                                                    binding="#{backing_gestioneSpese.tipoDiSpesa}">
+                                                    <f:selectItem id="si12"
+                                                                  value="#{backing_dettaglioSpese.tipoDiSpesaSel}"/>
+                                                    <f:selectItems id="si122"
+                                                                   value="#{backing_dettaglioSpese.valuestipoDiSpesa}"/>
+                                                </af:selectOneChoice>
+                                                <af:selectOneChoice id="smc3" label="Pagamento"
+                                                                    binding="#{backing_gestioneSpese.spagamento}">
+                                                    <f:selectItem id="si34" itemLabel="Seleziona Pagamento"
+                                                                  itemValue=""/>
+                                                    <f:selectItems id="sii24"
+                                                                   value="#{backing_dettaglioSpese.valuesPagamento}"/>
+                                                </af:selectOneChoice>
+                                                <af:inputText label="Note" binding="#{backing_gestioneSpese.itNote}"
+                                                              id="itNote"/>
+                                                <af:panelGroupLayout id="pgl3">
+                                                    <af:spacer width="25px"/>
+                                                    <af:outputText value="TOTALE SPESA: "
+                                                                   inlineStyle="font-size:large; font-weight:bold;"/>
+                                                    <af:outputText binding="#{backing_gestioneSpese.totaleSpese}"
+                                                                   inlineStyle="font-size:14px;font-weight:bold;background:#b1d2e5;padding:5px;border-radius:5px;margin-left:10px;"
+                                                                   id="ot2" partialTriggers="pc1:cbDelete Cerca"/>
+                                                </af:panelGroupLayout>
+                                            </af:panelFormLayout>
+                                        </f:facet>
+                                        <f:facet name="bottom">
+                                            <af:panelFormLayout id="pfl2">
+                                                <af:commandButton icon="/img/serach24x24.png" id="Cerca"
+                                                                  inlineStyle="width:100px; font-size:14px; height:30px; margin:18px 5px 0px 0px; font-weight:bold;"
+                                                                  text="Cerca"
+                                                                  actionListener="#{backing_gestioneSpese.cerca}"/>
+                                            </af:panelFormLayout>
+                                        </f:facet>
+                                    </af:panelStretchLayout>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="second">
+                                <af:panelBox text="Lista Spese" id="pb2" showDisclosure="false">
+                                    <af:panelStretchLayout id="psl3" bottomHeight="50">
+                                        <f:facet name="center">
+                                            <af:panelCollection id="pc1">
+                                                <f:facet name="statusbar">
+                                                    <af:toolbar id="t2">
+                                                        <af:commandButton text="Cancella" icon="/img/x16x16.png"
+                                                                          id="cbDelete" partialSubmit="true"
+                                                                          actionListener="#{backing_gestioneSpese.openPopup}"/>
+                                                        <af:commandButton text="Dettaglio" icon="/img/detail16x16.png"
+                                                                          id="cbDetail"
+                                                                          action="#{backing_gestioneSpese.actionDetail}"/>
+                                                        <af:commandButton text="Export" id="cbExport">
+                                                            <af:exportCollectionActionListener exportedId="tSpese"
+                                                                                               type="excelHTML"
+                                                                                               filename="Spese.xls"
+                                                                                               title="Spese"/>
+                                                        </af:commandButton>
+                                                    </af:toolbar>
+                                                </f:facet>
+                                                <af:table summary="tablespese"
+                                                          value="#{backing_gestioneSpese.listTableSpese}" var="row"
+                                                          rowBandingInterval="0" id="tSpese" partialTriggers=":::Cerca"
+                                                          rowSelection="single"
+                                                          binding="#{backing_gestioneSpese.TSpese}">
+                                                    <af:column sortable="false" headerText="Data spesa" id="c1c">
+                                                        <af:outputText value="#{row.formattedDate}" id="dataSpesa"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Barca" id="c3c">
+                                                        <af:outputText value="#{row.nomeBarca}" id="barca"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Descrizione" id="c1b">
+                                                        <af:outputText value="#{row.descrizione}" id="descrizione"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Importo spese" id="c6c">
+                                                        <af:outputText value="#{row.formattedValueEuroSpese}"
+                                                                       id="importoSpese"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="TOTALE spese" id="c6cw">
+                                                        <af:outputText id="totaleSpese" value="#{row.totSpese}"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Note" id="c1bn">
+                                                        <af:outputText value="#{row.note}" id="note"/>
+                                                    </af:column>
+                                                    <af:column sortable="false" headerText="Pagamento" id="c1bp">
+                                                        <af:outputText value="#{row.pagatoNonPagato}" id="pagamento"/>
+                                                    </af:column>
+                                                </af:table>
+                                            </af:panelCollection>
+                                        </f:facet>
+                                    </af:panelStretchLayout>
+                                </af:panelBox>
+                            </f:facet>
+                        </af:panelSplitter>
+                    </f:facet>
+                </af:pageTemplate>
+                <af:popup id="pRemove" binding="#{backing_gestioneSpese.popupRemove}">
+                    <af:dialog id="dRemove" closeIconVisible="false" type="yesNo" title="Attention"
+                               dialogListener="#{backing_gestioneSpese.dialogRemoveListener}"
+                               binding="#{backing_gestioneSpese.dialogRemove}">
+                        <af:spacer width="10" height="10" id="s9"/>
+                        <af:outputText value="#{backing_gestioneSpese.msgPopup}" id="otRemove"/>
+                        <af:spacer width="10" height="10" id="s10"/>
+                    </af:dialog>
+                </af:popup>
+                <af:popup id="noteWindow" binding="#{backing_gestioneSpese.noteWindow}">
+                    <af:noteWindow id="nw" autoDismissalTimeout="15">
+                        <af:outputText id="otNW" value="#{backing_gestioneSpese.msg}"
+                                       binding="#{backing_gestioneSpese.otMsg}"/>
+                    </af:noteWindow>
+                </af:popup>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

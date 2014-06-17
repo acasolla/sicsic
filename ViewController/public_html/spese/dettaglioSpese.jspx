@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="dettaglioSpese.jspx" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/sicsicTemplateTree.jspx" id="pt1">
+                    <f:facet name="mainContent">
+                        <af:panelStretchLayout id="psl3" bottomHeight="50">
+                            <f:facet name="center">
+                            <af:panelBox id="pb1" text="Inserimento Spese" showDisclosure="false">
+                              <af:panelFormLayout id="pf1" maxColumns="2" rows="4">
+                                        <af:inputDate label="Data" id="idData" required="true" binding="#{backing_dettaglioSpese.idData}"/>
+                                        <af:selectOneChoice id="smc1" label="Barca"
+                                                            binding="#{backing_dettaglioSpese.rsBarca}">
+                                            <f:selectItem id="si11"
+                                                          value="#{backing_dettaglioSpese.barcaSel}"/>                
+                                            <f:selectItems id="si1" value="#{backing_dettaglioSpese.displayValues}"/>
+                                        </af:selectOneChoice>
+                                        <af:inputText id="itImportoSpese" label="Importo spesa" columns="20"
+                                                      binding="#{backing_dettaglioSpese.itImportoSpese}">
+                                            <af:convertNumber hintPattern="999,99" pattern="#.00"/>
+                                        </af:inputText>
+                                        <af:selectOneChoice id="smc12" label="Tipo di spesa" required="false"
+                                                              binding="#{backing_dettaglioSpese.tipoDiSpesa}">
+                                            <f:selectItem id="si12"
+                                                          value="#{backing_dettaglioSpese.tipoDiSpesaSel}"/>
+                                            <f:selectItems id="si122"
+                                                           value="#{backing_dettaglioSpese.valuestipoDiSpesa}"/>
+                                        </af:selectOneChoice>
+                                       <af:inputText id="itNote" label="Note" rows="3" binding="#{backing_dettaglioSpese.itNote}"/>
+                                        <af:spacer width="10" height="10" id="s1"/>
+                                        <af:panelGroupLayout layout="horizontal" id="pg1">
+                                            <af:selectBooleanRadio group="pagare" label="Pagato" id="raPagatoS" 
+                                                                   binding="#{backing_dettaglioSpese.raPagatoS}"
+                                                                   valueChangeListener="#{backing_dettaglioSpese.pagatoValueChange}"/>
+                                            <af:selectBooleanRadio group="pagare" label="  Da pagare" id="raDaPagareS" 
+                                                                   binding="#{backing_dettaglioSpese.raDaPagareS}"
+                                                                   valueChangeListener="#{backing_dettaglioSpese.dapagareValueChange}"/>
+                                        </af:panelGroupLayout>
+                                    </af:panelFormLayout>
+                                        <af:inputText label="itId" id="itId" visible="false"
+                                                      binding="#{backing_dettaglioSpese.itId}"/>                                                                                              
+                                        <af:inputText label="itIdBarca" id="itIdBarca" visible="false"
+                                                      binding="#{backing_dettaglioSpese.itIdBarca}"/>
+                                        <af:inputText label="itIdSpesa" id="itIdSpesa" visible="false"
+                                                      binding="#{backing_dettaglioSpese.itIdSpesa}"/> 
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="bottom">
+                                <af:panelGroupLayout id="pglBottom" halign="end" layout="horizontal">
+                                    <af:commandButton text="Salva" id="salva" icon="/img/save16x16.png" partialSubmit="true"
+                                                     actionListener="#{backing_dettaglioSpese.openPopup}"
+                                                      binding="#{backing_dettaglioSpese.cbSalva}"/>
+                                    <af:commandButton text="Indietro" id="cbBack" icon="/img/back16x16.png" immediate="true"
+                                                      action="#{backing_dettaglioSpese.actionBack}"/>                                
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                </af:pageTemplate>
+                 <af:popup id="pConfirm" binding="#{backing_dettaglioSpese.popupConfirm}">
+                    <af:dialog id="dConf" closeIconVisible="false" type="yesNo" title="Attention"
+                               dialogListener="#{backing_dettaglioSpese.dialogConfirmListener}"
+                               binding="#{backing_dettaglioSpese.dialogConfirm}">
+                        <af:spacer width="10" height="10" id="s7"/>
+                        <af:outputText value="#{backing_dettaglioSpese.msgPopup}" id="otConf"/>
+                        <af:spacer width="10" height="10" id="s8"/>
+                    </af:dialog>                    
+                </af:popup>
+                <af:popup id="noteWindow" binding="#{backing_dettaglioSpese.noteWindow}">
+                    <af:noteWindow id="nw" autoDismissalTimeout="15">
+                        <af:outputText id="otNW" value="#{backing_dettaglioSpese.msg}"/>
+                    </af:noteWindow>
+                </af:popup>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

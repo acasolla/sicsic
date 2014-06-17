@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contratto_sicsic" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="REPORTS_DIR" class="java.lang.String"/>
+	<field name="luogoStipula" class="java.lang.String"/>
+	<field name="dataStipula" class="java.lang.String"/>
+	<field name="armatoreRagSoc" class="java.lang.String"/>
+	<field name="armatoreIndirizzo" class="java.lang.String"/>
+	<field name="armatorePIva" class="java.lang.String"/>
+	<field name="conduttoreNomeCognome" class="java.lang.String"/>
+	<field name="conduttoreNascitaLuogoData" class="java.lang.String"/>
+	<field name="documentoTipoNumero" class="java.lang.String"/>
+	<field name="locazioneInizio" class="java.lang.String"/>
+	<field name="locazioneFine" class="java.lang.String"/>
+	<field name="locazioneConsegna" class="java.lang.String"/>
+	<field name="locazioneCosto" class="java.lang.String"/>
+	<field name="locazioneDeposito" class="java.lang.String"/>
+	<field name="optionals" class="java.lang.String"/>
+	<field name="limitiNavigazione" class="java.lang.String"/>
+	<field name="barcaNome" class="java.lang.String"/>
+	<field name="barcaSiglaIscrizione" class="java.lang.String"/>
+	<field name="barcaCostruitaDa" class="java.lang.String"/>
+	<field name="barcaTipoModello" class="java.lang.String"/>
+	<field name="barcaPescaggio" class="java.lang.Double"/>
+	<field name="barcaMotorizzazione" class="java.lang.String"/>
+	<field name="barcaCapGasolio" class="java.lang.Double"/>
+	<field name="barcaAssCorpi" class="java.lang.String"/>
+	<field name="barcaAssRC" class="java.lang.String"/>
+	<field name="barcaNote" class="java.lang.String"/>
+	<field name="barcaEqMinimo" class="java.lang.Integer"/>
+	<field name="barcaBandiera" class="java.lang.String"/>
+	<field name="barcaLunghezza" class="java.lang.Double"/>
+	<field name="barcaAnnoCostruzione" class="java.lang.Integer"/>
+	<field name="barcaLarghezza" class="java.lang.Double"/>
+	<field name="barcaMatrMotori" class="java.lang.String"/>
+	<field name="barcaMaxPersone" class="java.lang.Integer"/>
+	<field name="skipperTitolo" class="java.lang.String"/>
+	<field name="skipperNomeCognome" class="java.lang.String"/>
+	<field name="skipperNatoANatoIl" class="java.lang.String"/>
+	<field name="skipperResidente" class="java.lang.String"/>
+	<field name="skipperPatenteNautica" class="java.lang.String"/>
+	<field name="skipperPatenteRilascioData" class="java.lang.String"/>
+	<field name="skipperPatenteRilascioLuogo" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="162" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="103" width="534" height="38"/>
+				<textElement/>
+				<text><![CDATA[Con il presente contratto in duplice originale e composto, ed eventuali allegati, da valere ad ogni effetto di legge anche se concluso a distanza tramite posta, telefax ed e-mail, tra le parti sotto indicate si conviene quanto segue: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="74" width="63" height="14"/>
+				<textElement/>
+				<text><![CDATA[Stipulato a ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="145" y="74" width="100" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{luogoStipula}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="271" y="74" width="63" height="14"/>
+				<textElement/>
+				<text><![CDATA[In Data]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="334" y="74" width="100" height="14"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataStipula}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="141" width="554" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[DEFINIZIONE E DETTAGLI]]></text>
+			</staticText>
+			<image>
+				<reportElement x="2" y="3" width="64" height="55"/>
+				<imageExpression><![CDATA[$P{REPORTS_DIR} + "/logo-sicsic.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="499" y="3" width="57" height="55"/>
+				<imageExpression><![CDATA[$P{REPORTS_DIR} + "/consorzio-porto-sicsic.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="66" y="3" width="433" height="55"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRATTO DI $F{tipo}.toUpperCase() PER UNITA' DA DIPORTO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="281" y="57" width="63" height="15"/>
+				<textElement/>
+				<text><![CDATA[Documento:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="345" y="57" width="211" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{documentoTipoNumero}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="57" width="255" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{armatorePIva}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="344" y="42" width="200" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conduttoreNascitaLuogoData}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="42" width="37" height="15"/>
+				<textElement/>
+				<text><![CDATA[Nato a:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="42" width="255" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{armatoreIndirizzo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="1" width="255" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[A) Armatore (da qui in poi chiamato "Armatore")]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="27" width="255" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{armatoreRagSoc}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="344" y="27" width="201" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conduttoreNomeCognome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="282" y="1" width="274" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[B) Conduttore (da qui in poi chiamato "Conduttore")]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="27" width="63" height="15"/>
+				<textElement/>
+				<text><![CDATA[Sig./Sig.ra :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="195" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="35" width="81" height="15"/>
+				<textElement/>
+				<text><![CDATA[Sigla Iscrizione:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="81" height="15"/>
+				<textElement/>
+				<text><![CDATA[Costruito Da:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="35" width="63" height="15"/>
+				<textElement/>
+				<text><![CDATA[Bandiera:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="50" width="105" height="15"/>
+				<textElement/>
+				<text><![CDATA[Anno di costruzione:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="81" height="15"/>
+				<textElement/>
+				<text><![CDATA[Denominazione:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="20" width="116" height="15"/>
+				<textElement/>
+				<text><![CDATA[Nr Minimo Equipaggio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="93" width="81" height="15"/>
+				<textElement/>
+				<text><![CDATA[Motorizzazione:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="108" width="95" height="15"/>
+				<textElement/>
+				<text><![CDATA[Cap. carburante lt:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="93" width="87" height="15"/>
+				<textElement/>
+				<text><![CDATA[Pescaggio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="108" width="104" height="15"/>
+				<textElement/>
+				<text><![CDATA[Nr Massimo Persone:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="123" width="144" height="15"/>
+				<textElement/>
+				<text><![CDATA[Assicurazioni - polizza corpi:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="138" width="133" height="15"/>
+				<textElement/>
+				<text><![CDATA[Assicurazioni - polizza RC:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="63" width="81" height="15"/>
+				<textElement/>
+				<text><![CDATA[Tipo Modello:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="78" width="80" height="15"/>
+				<textElement/>
+				<text><![CDATA[Matr. motori:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="63" width="116" height="15"/>
+				<textElement/>
+				<text><![CDATA[Lunghezza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="78" width="63" height="15"/>
+				<textElement/>
+				<text><![CDATA[Larghezza:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="255" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[C) Unita' da diporto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="153" width="555" height="16"/>
+				<textElement/>
+				<text><![CDATA[Note:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="96" y="20" width="159" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaNome}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="96" y="35" width="160" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaSiglaIscrizione}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="96" y="50" width="160" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaCostruitaDa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="96" y="63" width="160" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaTipoModello}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="96" y="78" width="159" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaMatrMotori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="96" y="93" width="160" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaMotorizzazione}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="96" y="108" width="159" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaCapGasolio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="398" y="20" width="157" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaEqMinimo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="398" y="35" width="157" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaBandiera}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="399" y="50" width="157" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaAnnoCostruzione}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="399" y="63" width="157" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaLunghezza}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="399" y="78" width="157" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaLarghezza}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="399" y="93" width="157" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaPescaggio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="399" y="108" width="157" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaMaxPersone}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="145" y="123" width="410" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaAssCorpi}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="145" y="138" width="411" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{barcaAssRC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="169" width="555" height="26"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{barcaNote}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="316" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="200" width="555" height="88"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[M) Condizioni Particolari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="63" height="14"/>
+				<textElement/>
+				<text><![CDATA[Dal giorno:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="35" width="63" height="14"/>
+				<textElement/>
+				<text><![CDATA[Al giorno:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="255" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[D) Durata della locazione]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="0" width="255" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[E) Consegna - Riconsegna]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="255" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[F) Fitto (comprensivo di optionals ed IVA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="52" width="255" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[G) Deposito cauzionale]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="66" y="20" width="192" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{locazioneInizio}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="66" y="35" width="192" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{locazioneFine}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="282" y="20" width="192" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{locazioneConsegna}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="49" y="72" width="206" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{locazioneCosto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="282" y="72" width="192" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{locazioneDeposito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="95" width="255" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[H) Optionals]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="95" width="255" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[I) Limiti di Navigazione]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="115" width="254" height="34"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{optionals}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="283" y="115" width="254" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{limitiNavigazione}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="149" width="545" height="14"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[L) Diritto di recesso (Direttiva 97/7/CE - Decreto LEgislativo 22/05/1999, nr. 185]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="163" width="544" height="26"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Nel caso in cui il presente contratto fosse concluso a distanza ed il Conduttore/Intendo tale la persona fisica che agisca pe fini che non rientrano nel quadro della sua attivita professionale), quest'ultimo potra' esercitare il diritto di recesso entro 10 giorni lavorativi dalla conclusione del ontratto, inviando all'Armatore: a)lettera raccomandata A/R; oppure,b)telegramma, telefax ed e-mail, purche' tale comunicazione sia confermata mediante lettera raccomandata con avviso di ricevimento entro le 48 ore successive. Il diritto di recesso non puo' essere esercitato:a)nel caso in cui l'esecuzone del presente contratto debba iniziare prima del termine di dieci giorni lavorativi della conclusione del contratto stesso;b) quando l'Armatore su richiesta del Conduttore, si impegna a consegnare l'unita' ad una data determinata o in un periodo prestabilito.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="276" width="544" height="24"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Con la firma del presente contratto, appendice "A,B" ed eventuali allegati. L'Armatore ed il Conduttore dichiarano di averlo letto, concordato ed qpprovato in ogni sua parte.                  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="300" width="544" height="16"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Ai sensi degli art. 1341 e 1342 Cod. Civ., l'Armatore ed il Conduttore dichiarano espressamente di aver letto, concordato ed approvato le clausole del presente contratto riportate nella Parte I, voci D,E,F,G,H,I,L,M,N,O]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="214" width="411" height="14"/>
+				<textElement>
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{skipperTitolo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="230" width="255" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{skipperNomeCognome}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="258" y="230" width="294" height="15"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{skipperNatoANatoIl}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="245" width="255" height="14"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{skipperResidente}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="258" y="245" width="294" height="14"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{skipperPatenteNautica}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="372" y="259" width="180" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{skipperPatenteRilascioData}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="259" width="369" height="17"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{skipperPatenteRilascioLuogo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="72" width="49" height="14"/>
+				<textElement/>
+				<text><![CDATA[Euro:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="255" height="14"/>
+				<textElement/>
+				<text><![CDATA[L'Armatore (data e firma)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="255" height="14"/>
+				<textElement/>
+				<text><![CDATA[Conduttore (data e firma)]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

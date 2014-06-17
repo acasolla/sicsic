@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+ <f:loadBundle basename="sicsic" var="applicationResources"/>
+    <af:pageTemplateDef var="attrs" definition="private">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <display-name>sicsicTemplateTree</display-name>
+                <facet>
+                    <description>place of main content</description>
+                    <facet-name>mainContent</facet-name>
+                </facet>
+            </component>
+        </af:xmlContent>
+        <af:panelStretchLayout topHeight="110px" startWidth="350px" id="pt_psl2" inlineStyle="background-color:#5888b9;">
+            <f:facet name="top">
+            <af:panelStretchLayout id="pss2" endWidth="200px"> 
+            <f:facet name="center">
+                <af:panelGroupLayout id="pt_pgl1">
+                    <af:panelFormLayout id="pflas" maxColumns="5" rows="1">
+                        <af:image source="/img/logoNautica.jpg" id="pt_i2" shortDesc="#{applicationResources['versione']}"/>
+                   
+                        <af:spacer width="10" height="10" id="pt_s1"/>
+                        <af:commandButton text="  Clienti" id="pt_cb1" icon="/img/iconCostumers32x32.png"
+                                          inlineStyle="width:180px; font-size:large; height:50px; margin:18px 5px 0px 0px;border-radius:5px;"
+                                          action="#{backing_sicsicTemplateTree.actionClienti}" immediate="true"/>
+                        <af:spacer width="10" height="10" id="pt_s12"/>
+                        <af:commandButton text="  Contratti" id="pt_cb2" icon="/img/contratti32x32.png"
+                                          inlineStyle="width:180px; font-size:large; height:50px; margin:18px 5px 0px 0px;border-radius:5px;"
+                                          action="#{backing_sicsicTemplateTree.actionContratti}" immediate="true"/>
+                        <af:spacer width="10" height="10" id="pt_s13"/>
+                    </af:panelFormLayout>
+                </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="end">
+                    <af:panelGroupLayout layout="vertical" id="aas" halign="start" valign="bottom">
+                                <af:spacer id="spVersion" height="15px"/>
+              
+                                <af:commandButton text=" LogOut" id="pt_cblg" icon="/img/logout.png" immediate="true"
+                                                  inlineStyle="width:100px; font-size:small; height:26px; margin:18px 5px 0px 0px;border-radius:3px;"
+                                                  action="#{backing_sicsicTemplateTree.actionLogin}"/>
+                           
+                            </af:panelGroupLayout>
+                        
+                </f:facet>
+                </af:panelStretchLayout>
+            </f:facet>
+            <f:facet name="center">
+                <!-- id="af_twocol_left_full_header_Stretched"   -->
+                <af:panelStretchLayout inlineStyle="background-color:#5888b9;" startWidth="200px" id="pt_psl1">
+                    <f:facet name="center">
+                        <af:facetRef facetName="mainContent"/>
+                    </f:facet>
+                    <f:facet name="start">
+                        <af:panelBox text="tree" showHeader="never" showDisclosure="false" id="pt_pb1">
+                            <af:tree immediate="true" value="#{backing_sicsicTemplateTree.model}" var="node" id="t1aa"
+                                     summary="navigationTree" binding="#{backing_sicsicTemplateTree.tree}"
+                                     selectionListener="#{backing_sicsicTemplateTree.treeSelectionListener}"
+                                     rowDisclosureListener="#{backing_sicsicTemplateTree.rowDisclosureTree}">
+                                <f:facet name="nodeStamp">
+                                    <af:panelGroupLayout id="pgl2">
+                                        <af:image source="#{node.icon}" shortDesc="folder" id="pt_i1"
+                                                  inlineStyle="vertical-align:middle;"/>
+                                        <af:commandLink text="#{node.text}" id="ot1" immediate="true"
+                                                        partialSubmit="true" action="#{node.getAction}"
+                                                        inlineStyle="font-weight:bold;" disabled="#{node.disabled}"/>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                            </af:tree>
+                        </af:panelBox>
+                    </f:facet>
+                </af:panelStretchLayout>
+            </f:facet>
+        </af:panelStretchLayout>
+    </af:pageTemplateDef>
+</jsp:root>

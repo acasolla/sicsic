@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="contratto.jspx" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/template/sicsicTemplateTree.jspx" id="pt1">
+                    <f:facet name="mainContent">
+                        <af:panelStretchLayout id="ps1" bottomHeight="50">
+                            <f:facet name="center">
+                                <af:panelBox id="pb1" text="Contratto" showDisclosure="false">
+                                    <af:showDetailHeader text="Info" disclosed="true" id="sdh1">
+                                        <af:panelFormLayout id="pf1" maxColumns="2" rows="1" shortDesc="Clienti"
+                                                            labelWidth="150px">
+                                            <af:inputText label="Città" value="Sorrento" id="itStipulato"
+                                                          required="true" binding="#{backing_contratto.itStipulato}"/>
+                                            <af:selectOneChoice id="scliente" label="Cliente" required="true"
+                                                                binding="#{backing_contratto.scliente}">
+                                                <f:selectItem id="si3" itemLabel="Seleziona Cliente" itemValue=""/>
+                                                <f:selectItems id="sii3"
+                                                               value="#{backing_dettaglioNoleggio.displayValuesCliente}"/>
+                                            </af:selectOneChoice>
+                                            <af:inputDate label="Data" id="idData" required="true" autoSubmit="true"
+                                                          binding="#{backing_contratto.idData}"/>
+              
+                                            <af:selectOneChoice id="smc2" label="Barca" required="true"
+                                                                binding="#{backing_contratto.sbarca}">
+                                                <f:selectItem id="si2" itemLabel="Seleziona Barca" itemValue=""/>
+                                                <f:selectItems id="sii2"
+                                                               value="#{backing_dettaglioNoleggio.displayValuesBarca}"/>
+                                            </af:selectOneChoice>
+              
+                          
+                                        </af:panelFormLayout>
+                                    </af:showDetailHeader>
+                                    <af:spacer width="10" height="40" id="s1"/>
+                                    <af:showDetailHeader text="Locazione/Noleggio" disclosed="true" id="sdh2">
+                                        <af:panelFormLayout id="pf2" maxColumns="2" rows="1" shortDesc="Clienti"
+                                                            labelWidth="150px">
+                                            <af:inputDate label="Da" id="idInizio"
+                                                          binding="#{backing_contratto.idInizio}" required="true">
+                                                <f:convertDateTime type="both" pattern="dd-MM-yyyy HH:mm"/>
+                                            </af:inputDate>
+                                            <af:inputDate label="A" id="idFine" binding="#{backing_contratto.idFine}"
+                                                          required="true">
+                                                <f:convertDateTime type="both" pattern="dd-MM-yyyy HH:mm"/>
+                                            </af:inputDate>
+                      
+                      
+                      
+                                            <af:selectOneChoice id="smc7" label="Tipo" required="true"
+                                                                binding="#{backing_contratto.stipo}">
+                                                <f:selectItem id="si7" itemLabel="Seleziona Tipo" itemValue=""/>
+                                                <f:selectItems id="sii7"
+                                                               value="#{backing_dettaglioNoleggio.displayValuesTipo}"/>
+                                            </af:selectOneChoice>
+                 
+                      
+                      
+                      
+                      
+                                            <af:inputText label="Luogo Consegna" id="itLuogoConsegna" value="Sorrento"
+                                                          required="true"
+                                                          binding="#{backing_contratto.itLuogoConsegna}"/>
+                                            <af:inputText label="Fitto" id="itFitto"
+                                                          binding="#{backing_contratto.itFitto}"/>
+                                            <af:inputText label="Deposito" id="itDeposito"
+                                                          binding="#{backing_contratto.itDeposito}"/>
+
+                                        </af:panelFormLayout>
+                                    </af:showDetailHeader>
+                                    <af:spacer width="10" height="40" id="s3"/>
+                                    <af:showDetailHeader text="Informazioni aggiuntive" disclosed="true" id="sdh3">
+                                        <af:panelFormLayout id="pf3" maxColumns="1" rows="1" shortDesc="Clienti"
+                                                            labelWidth="150px">
+                                                  <af:selectOneChoice id="smc3" label="Skipper"
+                                            binding="#{backing_contratto.sskipper}">
+                                                <f:selectItem id="si4" itemLabel="Seleziona Skipper" itemValue=""/>
+                                                <f:selectItems id="sii4"
+                                                               value="#{backing_dettaglioNoleggio.displayValuesSkipper}"/>
+                                            </af:selectOneChoice>
+              
+                                            <af:inputText label="Optionals" id="itOptionals" rows="3"
+                                                          contentStyle="width:400px"
+                                                          binding="#{backing_contratto.itOptionals}"/>
+                            <!--
+                                            <af:inputText label="Condizioni particolari" id="itCondizioniPart" rows="3"
+                                                          contentStyle="width:400px"
+                                                          binding="#{backing_contratto.itCondizioniPart}"/>
+                           -->
+                                        </af:panelFormLayout>
+                                    </af:showDetailHeader>
+                                </af:panelBox>
+                            </f:facet>
+                            <f:facet name="bottom">
+                                <af:panelGroupLayout id="pglBottom" halign="end" layout="horizontal">
+                                    <af:commandButton text="Stampa" id="salva" icon="/img/print16x16.png"
+                                                      partialSubmit="false"
+                                                      actionListener="#{backing_contratto.printAction}"/>
+                                </af:panelGroupLayout>
+                            </f:facet>
+                        </af:panelStretchLayout>
+                    </f:facet>
+                </af:pageTemplate>
+          
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

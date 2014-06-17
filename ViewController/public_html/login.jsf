@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="login.jsf" id="d1">
+        <af:form id="f1">
+            <af:panelStretchLayout id="psl1" startWidth="33%" endWidth="33%" topHeight="25%" bottomHeight="25%" >
+                <f:facet name="center">
+                    <af:panelGroupLayout id="pgl1" layout="vertical" halign="center" >
+                        <af:panelBox id="pb1" inlineStyle="width:280px" titleHalign="center" text="Nautica SicSic"
+                                     showDisclosure="false">
+                            <af:spacer width="10" height="10" id="s1"/>
+                            <af:panelGroupLayout id="ps2" halign="center" valign="middle">
+                                <h:panelGrid id="pgr1" columns="2" cellpadding="1" cellspacing="10">
+                                    <af:outputText id="ot1" value="Utente"/>
+                                    <af:inputText id="itUser"  columns="20" binding="#{backing_Login.itUser}"
+                                                  required="true" autoSubmit="true"/>
+                                    <af:outputText id="ot2" value="Password"/>
+                                    <af:inputText id="itPsw" columns="20" binding="#{backing_Login.itPsw}"
+                                                   required="true" secret="true" autoSubmit="true"/>
+                                </h:panelGrid>
+                                <af:outputText visible="false" id="otError" binding="#{backing_Login.otError}"
+                                               partialTriggers="cbLogin" inlineStyle="color:red"/>
+                            </af:panelGroupLayout>
+                            <af:spacer width="10" height="10" id="s2" />
+                            <af:panelGroupLayout id="pgl5" layout="vertical" halign="center">
+                                <af:commandButton text="Login" id="cbLogin" action="#{backing_Login.submit}">
+                                </af:commandButton>
+                            </af:panelGroupLayout>
+                        </af:panelBox>
+                    </af:panelGroupLayout>
+                </f:facet>
+                <f:facet name="bottom">
+                    <af:panelGroupLayout id="pgl2"/>
+                </f:facet>
+                <f:facet name="top">
+                    <af:panelGroupLayout id="pgl3"/>
+                </f:facet>
+            </af:panelStretchLayout>
+               </af:form>
+    </af:document>
+    
+</f:view>
